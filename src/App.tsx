@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC } from "react";
+import { Box, Container, CssBaseline } from "@mui/material";
+import { Header } from "./components/header";
+import { Route, Routes } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { Setting } from "./screens/settings";
+import { Home } from "./screens/home";
+import { ROUTES } from "./constants/routes";
+import { Recommend } from "./screens/recommend";
 
-export default App;
+export const App: FC = () => {
+	return (
+		<>
+			<CssBaseline />
+			<Header />
+			<Box
+				sx={{
+					backgroundColor: (theme) => theme.palette.grey[100],
+				}}
+			>
+				<Container maxWidth="xl">
+					<Routes>
+						<Route path={ROUTES.home} element={<Home />} />
+						<Route path={ROUTES.setting} element={<Setting />} />
+						<Route path={ROUTES.recommend} element={<Recommend />} />
+					</Routes>
+				</Container>
+			</Box>
+		</>
+	);
+};
